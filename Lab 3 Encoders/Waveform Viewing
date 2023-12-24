@@ -1,0 +1,15 @@
+#Waveform Viewing
+#Reads raw values from the encoder
+import board
+import time
+import digitalio
+
+# left encoder
+a = digitalio.DigitalInOut(board.GP12)
+b = digitalio.DigitalInOut(board.GP13)
+
+while True:
+    print(int(a.value), int(b.value))
+    time.sleep(0.001)
+
+#about 206 ticks per full rotation

@@ -1,0 +1,29 @@
+#Polling
+#Tracks the position of the left wheel
+import board
+import digitalio
+
+# left encoder
+a = digitalio.DigitalInOut(board.GP12)
+b = digitalio.DigitalInOut(board.GP13)
+
+counter = 0
+position = 0
+a_prev = a.value
+
+def leftEncoderRisingEdge():
+    global position # access global position
+    if (b.value == True):
+        position += 1
+    else:
+        position -= 1
+
+while True:
+    a_val = a.value
+    if a_val and not a_prev: # rising edge
+        leftEncoderRisingEdge()
+    a_prev = a_val
+
+    if counter % 1000 == 0:
+        print(position, a.value, a_val)
+    counter += 1

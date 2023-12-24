@@ -1,0 +1,11 @@
+#Interupts
+#Utilizes the rotaryio module to track position and improve efficiency
+import board
+import time
+import rotaryio
+
+enc = rotaryio.IncrementalEncoder(board.GP12, board.GP13)
+
+while True:
+    print(enc.position)
+    time.sleep(0.001)
